@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 
+//Add this
+const http = require('http')
+const server = http.createServer(app);
+
 app.get('/', (req,res)=> {
     res.send(`<!DOCTYPE html>
 <html lang="en">
@@ -88,8 +92,15 @@ const submitTalentForm = require('./API/submit')
 app.use("/submit", submitTalentForm)
 
 // Start the server
-const PORT = 1523;
+// const PORT = 1523;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+ //app.listen(PORT, () => {
+  //  console.log(`Server is running on http://localhost:${PORT}`);
+ //});
+
+//Start the server Microsoft Azure
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
